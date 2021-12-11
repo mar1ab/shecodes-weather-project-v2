@@ -24,21 +24,39 @@
         <input type="submit" value="🔍" />
         <input type="submit" value="➢" />
       </form>
-      <h1>City name</h1>
-      <h2>Time in city</h2>
-      <h3>
-        <span>(Current temp)</span><span>ºC</span><br />H
-        <span>(High temp)</span>º / L <span>(Low temp)</span>º
-      </h3>
+
       <div class="row">
-        <div class="col"><strong>WED</strong><br />15º/7º <br />🌤</div>
-        <div class="col"><strong>THU</strong> <br />14º/7º <br />🌧</div>
-        <div class="col"><strong>FRI </strong><br />16º/6º <br />🌤</div>
-        <div class="col"><strong>SAT </strong><br />13º/5º <br />🌩</div>
-        <div class="col"><strong>SUN </strong><br />15º/7º <br />☀️</div>
+        <h1 class="col-6">City name</h1>
+        <h2 class="col-6"><i class="fas fa-cloud"></i></h2>
       </div>
-      <button>ºC</button>
-      <button>ºF</button>
+      <h3 class="col-6">12:12</h3>
+      <h4 class="col-6">
+        <span>10</span><span>ºC</span><br />H <span>12</span>º / L
+        <span>8</span>º
+      </h4>
+      <div class="row forecast">
+        <div class="col">
+          <strong>WED</strong><br />15º/7º <br /><i class="fas fa-cloud"></i>
+        </div>
+        <div class="col">
+          <strong>THU</strong> <br />14º/7º <br /><i class="fas fa-cloud"></i>
+        </div>
+        <div class="col">
+          <strong>FRI </strong><br />16º/6º <br /><i class="fas fa-cloud"></i>
+        </div>
+        <div class="col">
+          <strong>SAT </strong><br />13º/5º <br /><i class="fas fa-cloud"></i>
+        </div>
+        <div class="col">
+          <strong>SUN </strong><br />15º/7º <br /><i class="fas fa-cloud"></i>
+        </div>
+      </div>
+      <div class="btn-custom">
+        <div class="btn-group me-2" role="group" aria-label="First group">
+          <button type="button" class="btn btn-outline-secondary">ºC</button>
+          <button type="button" class="btn btn-outline-secondary">ºF</button>
+        </div>
+      </div>
     </div>
     <script src="src/script.js"></script>
   </body>
