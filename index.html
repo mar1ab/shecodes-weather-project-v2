@@ -20,10 +20,18 @@
   </head>
   <body>
     <div class="container">
-      <form>
-        <input type="text" placeholder="Search city..." />
-        <button><i class="fas fa-search form-button"></i></button>
-        <button><i class="fas fa-location-arrow form-button"></i></button>
+      <form id="search-form">
+        <input
+          type="text"
+          id="search-city-input"
+          placeholder="Search city..."
+        />
+        <button id="search-city-btn">
+          <i class="fas fa-search form-button"></i>
+        </button>
+        <button id="current-city-btn">
+          <i class="fas fa-location-arrow form-button"></i>
+        </button>
       </form>
 
       <div class="row">
