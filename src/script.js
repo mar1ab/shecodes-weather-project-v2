@@ -44,6 +44,36 @@ function inputCityWeather(response) {
   windElement.innerHTML = `Wind: ${wind}km/h`;
 }
 
+function tempToFahrenheit() {
+  if (tempUnit.innerHTML === "ºC") {
+    let currentTemp = currentTempElement.innerHTML;
+    currentTemp = Number(currentTemp);
+    currentTempElement.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
+    let highTemp = highTempElement.innerHTML;
+    highTemp = Number(highTemp);
+    highTempElement.innerHTML = Math.round((highTemp * 9) / 5 + 32);
+    let lowTemp = lowTempElement.innerHTML;
+    lowTemp = Number(lowTemp);
+    lowTempElement.innerHTML = Math.round((lowTemp * 9) / 5 + 32);
+    tempUnit.innerHTML = "ºF";
+  }
+}
+
+function tempToCelcius() {
+  if (tempUnit.innerHTML === "ºF") {
+    let currentTemp = currentTempElement.innerHTML;
+    currentTemp = Number(currentTemp);
+    currentTempElement.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
+    let highTemp = highTempElement.innerHTML;
+    highTemp = Number(highTemp);
+    highTempElement.innerHTML = Math.round(((highTemp - 32) * 5) / 9);
+    let lowTemp = lowTempElement.innerHTML;
+    lowTemp = Number(lowTemp);
+    lowTempElement.innerHTML = Math.round(((lowTemp - 32) * 5) / 9);
+    tempUnit.innerHTML = "ºC";
+  }
+}
+
 let apiKey = "c10c120febfbdbb2ecbedb567e2ec32d";
 
 let city = document.querySelector("#city");
@@ -58,5 +88,13 @@ let highTempElement = document.querySelector("#high-temp");
 let lowTempElement = document.querySelector("#low-temp");
 let humidityElement = document.querySelector("#humidity");
 let windElement = document.querySelector("#wind");
+
+let tempUnit = document.querySelector("#temp-unit");
+
+let fahrenheitButton = document.querySelector("#fahrenheit-button");
+fahrenheitButton.addEventListener("click", tempToFahrenheit);
+
+let celciusButton = document.querySelector("#celcius-button");
+celciusButton.addEventListener("click", tempToCelcius);
 
 navigator.geolocation.getCurrentPosition(currentCity);

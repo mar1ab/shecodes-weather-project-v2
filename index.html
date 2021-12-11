@@ -44,7 +44,7 @@
           <div id="condition"></div>
         </h3>
         <h4 class="col-6">
-          <span id="current-temp"> </span><span>ºC</span><br />H
+          <span id="current-temp"> </span><span id="temp-unit">ºC</span><br />H
           <span id="high-temp"> </span>º | L <span id="low-temp"> </span>º
           <div id="humidity"></div>
           <div id="wind"></div>
@@ -69,8 +69,20 @@
       </div>
       <div class="btn-custom">
         <div class="btn-group me-2" role="group" aria-label="First group">
-          <button type="button" class="btn btn-outline-secondary">ºC</button>
-          <button type="button" class="btn btn-outline-secondary">ºF</button>
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            id="celcius-button"
+          >
+            ºC
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            id="fahrenheit-button"
+          >
+            ºF
+          </button>
         </div>
       </div>
     </div>
