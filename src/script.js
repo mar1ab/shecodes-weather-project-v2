@@ -22,6 +22,16 @@ function currentCityWeather(response) {
   windElement.innerHTML = `Wind: ${wind}km/h`;
 }
 
+function locateCity() {
+  navigator.geolocation.getCurrentPosition(locateCityWeather);
+  function locateCityWeather(position) {
+    let lat = position.coords.latitude;
+    let lon = position.coords.longitude;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric`;
+    axios.get(`${apiUrl}&appid=${apiKey}`).then(currentCityWeather);
+  }
+}
+
 function inputCity(event) {
   event.preventDefault();
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchCityInput.value}&units=metric`;
@@ -81,6 +91,9 @@ let searchCityInput = document.querySelector("#search-city-input");
 searchCityInput.addEventListener("submit", inputCity);
 let searchCityButton = document.querySelector("#search-city-btn");
 searchCityButton.addEventListener("click", inputCity);
+
+let locationButton = document.querySelector("#location-btn");
+locationButton.addEventListener("click", locateCity);
 
 let coditionElement = document.querySelector("#condition");
 let currentTempElement = document.querySelector("#current-temp");
