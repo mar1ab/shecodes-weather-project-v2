@@ -86,6 +86,29 @@ function tempToCelcius() {
 
 let apiKey = "c10c120febfbdbb2ecbedb567e2ec32d";
 
+let now = new Date();
+let days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+let day = days[now.getDay()];
+let hours = now.getHours();
+if (hours < 10) {
+  hours = `0${hours}`;
+}
+let minutes = now.getMinutes();
+if (minutes < 10) {
+  minutes = `0${minutes}`;
+}
+
+let currentTimeDisplay = document.querySelector("#current-time");
+currentTimeDisplay.innerHTML = `${day} ${hours}:${minutes}`;
+
 let city = document.querySelector("#city");
 let searchCityInput = document.querySelector("#search-city-input");
 searchCityInput.addEventListener("submit", inputCity);
