@@ -28,7 +28,6 @@ function currentCity(position) {
   axios.get(`${apiUrl}&appid=${apiKey}`).then(currentCityWeather);
 }
 function currentCityWeather(response) {
-  console.log(response.data);
   let currentCity = response.data.name;
   city.innerHTML = `${currentCity}`;
   let condition = response.data.weather[0].main;
@@ -37,7 +36,7 @@ function currentCityWeather(response) {
   let lowTemp = Math.round(response.data.main.temp_min);
   let humidity = Math.round(response.data.main.humidity);
   let wind = Math.round(response.data.wind.speed);
-
+  let icon = response.data.weather[0].icon;
   coditionElement.innerHTML = `${condition}`;
   currentTempElement.innerHTML = `${temp}`;
   highTempElement.innerHTML = `${highTemp}`;
@@ -45,6 +44,10 @@ function currentCityWeather(response) {
   humidityElement.innerHTML = `Humidity: ${humidity}%`;
   windElement.innerHTML = `Wind: ${wind}km/h`;
   dateTimeElement.innerHTML = formatDate(response.data.dt * 1000);
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${icon}@2x.png`
+  );
 }
 
 function locateCity(event) {
@@ -65,13 +68,13 @@ function inputCity(event) {
 }
 
 function inputCityWeather(response) {
-  console.log(response.data);
   let condition = response.data.weather[0].main;
   let temp = Math.round(response.data.main.temp);
   let highTemp = Math.round(response.data.main.temp_max);
   let lowTemp = Math.round(response.data.main.temp_min);
   let humidity = Math.round(response.data.main.humidity);
   let wind = Math.round(response.data.wind.speed);
+  let icon = response.data.weather[0].icon;
   city.innerHTML = `${searchCityInput.value}`;
   coditionElement.innerHTML = `${condition}`;
   currentTempElement.innerHTML = `${temp}`;
@@ -80,6 +83,11 @@ function inputCityWeather(response) {
   humidityElement.innerHTML = `Humidity: ${humidity}%`;
   windElement.innerHTML = `Wind: ${wind}km/h`;
   dateTimeElement.innerHTML = formatDate(response.data.dt * 1000);
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", `${condition}`);
 }
 
 function tempToFahrenheit() {
@@ -125,6 +133,7 @@ searchCityButton.addEventListener("click", inputCity);
 let locationButton = document.querySelector("#location-btn");
 locationButton.addEventListener("click", locateCity);
 
+let iconElement = document.querySelector("#icon-element");
 let coditionElement = document.querySelector("#condition");
 let currentTempElement = document.querySelector("#current-temp");
 let highTempElement = document.querySelector("#high-temp");

@@ -11,10 +11,6 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-    <script
-      src="https://kit.fontawesome.com/c3224d8476.js"
-      crossorigin="anonymous"
-    ></script>
     <link rel="stylesheet" href="src/style.css" />
     <title>Weather App by Maria B</title>
   </head>
@@ -35,21 +31,23 @@
       </form>
 
       <div class="row">
-        <h1 class="col-6" id="city"></h1>
-        <h2 class="col-6"><i class="fas fa-cloud"></i></h2>
+        <h1>
+          <span class="col-6" id="city"></span>
+          <span class="col-6"><img id="icon-element" /></span>
+        </h1>
       </div>
       <div class="row">
-        <h3 class="col-6">
+        <h2 class="col-6">
           <span id="condition"></span>
           <br />
           <span id="date-time"></span>
-        </h3>
-        <h4 class="col-6">
+        </h2>
+        <h3 class="col-6">
           <span id="current-temp"> </span><span id="temp-unit">ºC</span><br />H
           <span id="high-temp"> </span>º | L <span id="low-temp"> </span>º
           <div id="humidity"></div>
           <div id="wind"></div>
-        </h4>
+        </h3>
       </div>
       <div class="row forecast">
         <div class="col">
