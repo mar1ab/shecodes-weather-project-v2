@@ -1,3 +1,26 @@
+function formatDate(timestamp) {
+  let updateTime = new Date(timestamp);
+  let hours = updateTime.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = updateTime.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[updateTime.getDay()];
+  return `Last updated ${day} ${hours}:${minutes}`;
+}
+
 function currentCity(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
@@ -5,7 +28,7 @@ function currentCity(position) {
   axios.get(`${apiUrl}&appid=${apiKey}`).then(currentCityWeather);
 }
 function currentCityWeather(response) {
-  console.log(response);
+  console.log(response.data);
   let currentCity = response.data.name;
   city.innerHTML = `${currentCity}`;
   let condition = response.data.weather[0].main;
@@ -14,15 +37,18 @@ function currentCityWeather(response) {
   let lowTemp = Math.round(response.data.main.temp_min);
   let humidity = Math.round(response.data.main.humidity);
   let wind = Math.round(response.data.wind.speed);
+
   coditionElement.innerHTML = `${condition}`;
   currentTempElement.innerHTML = `${temp}`;
   highTempElement.innerHTML = `${highTemp}`;
   lowTempElement.innerHTML = `${lowTemp}`;
   humidityElement.innerHTML = `Humidity: ${humidity}%`;
   windElement.innerHTML = `Wind: ${wind}km/h`;
+  dateTimeElement.innerHTML = formatDate(response.data.dt * 1000);
 }
 
-function locateCity() {
+function locateCity(event) {
+  event.preventDefault();
   navigator.geolocation.getCurrentPosition(locateCityWeather);
   function locateCityWeather(position) {
     let lat = position.coords.latitude;
@@ -39,6 +65,7 @@ function inputCity(event) {
 }
 
 function inputCityWeather(response) {
+  console.log(response.data);
   let condition = response.data.weather[0].main;
   let temp = Math.round(response.data.main.temp);
   let highTemp = Math.round(response.data.main.temp_max);
@@ -52,6 +79,7 @@ function inputCityWeather(response) {
   lowTempElement.innerHTML = `${lowTemp}`;
   humidityElement.innerHTML = `Humidity: ${humidity}%`;
   windElement.innerHTML = `Wind: ${wind}km/h`;
+  dateTimeElement.innerHTML = formatDate(response.data.dt * 1000);
 }
 
 function tempToFahrenheit() {
@@ -86,28 +114,7 @@ function tempToCelcius() {
 
 let apiKey = "c10c120febfbdbb2ecbedb567e2ec32d";
 
-let now = new Date();
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-let day = days[now.getDay()];
-let hours = now.getHours();
-if (hours < 10) {
-  hours = `0${hours}`;
-}
-let minutes = now.getMinutes();
-if (minutes < 10) {
-  minutes = `0${minutes}`;
-}
-
-let currentTimeDisplay = document.querySelector("#current-time");
-currentTimeDisplay.innerHTML = `${day} ${hours}:${minutes}`;
+let dateTimeElement = document.querySelector("#date-time");
 
 let city = document.querySelector("#city");
 let searchCityInput = document.querySelector("#search-city-input");
