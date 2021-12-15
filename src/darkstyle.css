@@ -3,7 +3,7 @@ body {
 }
 h1,
 h2 {
-  color: rgb(78, 78, 78);
+  color: rgb(183, 230, 241);
   text-align: center;
 }
 
@@ -18,7 +18,7 @@ h2 {
 }
 input {
   color: rgb(78, 78, 78);
-  background-color: rgb(226, 226, 226, 0.5);
+  background-color: rgb(255, 255, 255, 0.75);
   border-color: rgb(9, 146, 180);
   border-style: solid;
   border-width: 2px;
@@ -30,11 +30,7 @@ img {
 .container {
   margin: 20px auto;
   padding: 30px;
-  background: linear-gradient(
-    178deg,
-    rgba(201, 234, 252, 0.51) 14.9%,
-    rgba(139, 192, 216, 0.73) 80%
-  );
+  background: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
   max-width: 700px;
   border-color: rgb(9, 146, 180);
   border-style: solid;
@@ -42,22 +38,22 @@ img {
   border-radius: 5px;
 }
 .form-buttons {
-  color: rgb(78, 78, 78);
+  color: rgb(183, 230, 241);
   border-color: rgb(9, 146, 180);
   border-style: solid;
   border-width: 2px;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255, 0.75);
   border-radius: 5px;
 }
 .forecast {
   padding: 15px;
   text-align: center;
-  color: rgb(78, 78, 78);
+  color: rgb(183, 230, 241);
   background-color: rgb(9, 146, 180, 0.5);
   border-radius: 5px;
 }
 .btn {
-  color: rgb(78, 78, 78);
+  color: rgb(183, 230, 241);
   text-align: center;
   border-width: 0px;
   background-color: rgb(9, 146, 180, 0.5);

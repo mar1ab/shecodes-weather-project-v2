@@ -11,7 +11,11 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="src/style.css" />
+    <script
+      src="https://kit.fontawesome.com/c3224d8476.js"
+      crossorigin="anonymous"
+    ></script>
+    <link id="style" rel="stylesheet" href="src/style.css" />
     <title>Weather App by Maria B</title>
   </head>
   <body>
@@ -22,32 +26,32 @@
           id="search-city-input"
           placeholder="Search city..."
         />
-        <button id="search-city-btn">
-          <i class="fas fa-search form-button"></i>
+        <button class="form-buttons" id="search-city-btn">
+          <i class="fa-solid fa-magnifying-glass"></i>
         </button>
-        <button id="location-btn">
-          <i class="fas fa-location-arrow form-button"></i>
+        <button class="form-buttons" id="location-btn">
+          <i class="fa-solid fa-location-arrow"></i>
         </button>
       </form>
 
       <div class="row">
         <h1>
           <span class="col-6" id="city"></span>
-          <span class="col-6"><img id="icon-element" /></span>
+          <img class="col-6" id="icon-element" />
         </h1>
       </div>
       <div class="row">
         <h2 class="col-6">
           <span id="condition"></span>
           <br />
-          <span id="date-time"></span>
-        </h2>
-        <h3 class="col-6">
-          <span id="current-temp"> </span><span id="temp-unit">ºC</span><br />H
+          <span id="current-temp"></span><span id="temp-unit">ºC</span><br />H
           <span id="high-temp"> </span>º | L <span id="low-temp"> </span>º
           <div id="humidity"></div>
           <div id="wind"></div>
-        </h3>
+        </h2>
+        <h2 class="col-6">
+          <span id="date-time"></span>
+        </h2>
       </div>
       <div class="row forecast">
         <div class="col">

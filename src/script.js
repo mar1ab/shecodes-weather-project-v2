@@ -28,6 +28,7 @@ function currentCity(position) {
   axios.get(`${apiUrl}&appid=${apiKey}`).then(currentCityWeather);
 }
 function currentCityWeather(response) {
+  console.log(response);
   let currentCity = response.data.name;
   city.innerHTML = `${currentCity}`;
   let condition = response.data.weather[0].main;
@@ -48,6 +49,14 @@ function currentCityWeather(response) {
     "src",
     `http://openweathermap.org/img/wn/${icon}@2x.png`
   );
+  if (response.data.dt < response.data.sys.sunrise) {
+    style.setAttribute("href", "src/darkstyle.css");
+  }
+  if (response.data.dt > response.data.sys.sunset) {
+    style.setAttribute("href", "src/darkstyle.css");
+  } else {
+    style.setAttribute("href", "src/style.css");
+  }
 }
 
 function locateCity(event) {
@@ -68,6 +77,7 @@ function inputCity(event) {
 }
 
 function inputCityWeather(response) {
+  console.log(response);
   let condition = response.data.weather[0].main;
   let temp = Math.round(response.data.main.temp);
   let highTemp = Math.round(response.data.main.temp_max);
@@ -88,6 +98,14 @@ function inputCityWeather(response) {
     `http://openweathermap.org/img/wn/${icon}@2x.png`
   );
   iconElement.setAttribute("alt", `${condition}`);
+  if (response.data.dt < response.data.sys.sunrise) {
+    style.setAttribute("href", "src/darkstyle.css");
+  }
+  if (response.data.dt > response.data.sys.sunset) {
+    style.setAttribute("href", "src/darkstyle.css");
+  } else {
+    style.setAttribute("href", "src/style.css");
+  }
 }
 
 function tempToFahrenheit() {
@@ -148,5 +166,7 @@ fahrenheitButton.addEventListener("click", tempToFahrenheit);
 
 let celciusButton = document.querySelector("#celcius-button");
 celciusButton.addEventListener("click", tempToCelcius);
+
+let style = document.querySelector("#style");
 
 navigator.geolocation.getCurrentPosition(currentCity);
