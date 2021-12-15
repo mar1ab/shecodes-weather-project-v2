@@ -3,7 +3,8 @@ body {
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 h1,
-h2 {
+h2,
+a {
   color: rgb(78, 78, 78);
   text-align: center;
 }
@@ -28,6 +29,7 @@ input {
 img {
   max-width: 150px;
 }
+
 .container {
   margin: 20px auto;
   padding: 30px;
@@ -71,4 +73,12 @@ img {
 .btn:hover {
   background-color: rgb(9, 146, 180);
   border-color: rgb(9, 146, 180);
+}
+#github-link {
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+}
+#github-link:hover {
+  color: rgb(26, 26, 26);
 }
