@@ -28,7 +28,6 @@ function currentCity(position) {
   axios.get(`${apiUrl}&appid=${apiKey}`).then(currentCityWeather);
 }
 function currentCityWeather(response) {
-  console.log(response);
   let currentCity = response.data.name;
   city.innerHTML = `${currentCity}`;
   let condition = response.data.weather[0].main;
@@ -82,7 +81,6 @@ function inputCity(event) {
 }
 
 function inputCityWeather(response) {
-  console.log(response);
   let condition = response.data.weather[0].main;
   let temp = Math.round(response.data.main.temp);
   let highTemp = Math.round(response.data.main.temp_max);
@@ -148,6 +146,29 @@ function tempToCelcius() {
   }
 }
 
+function displayForecast() {
+  let forecastHTML = `<div class="row">`;
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+        <div class="col">
+          <strong class="forecast-day">${day}</strong><br /><span class="forecast-temp-high">15</span>º | <span class="forecast-temp-low">7</span>º <br /><i class="fas fa-cloud"></i>
+        </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 let apiKey = "c10c120febfbdbb2ecbedb567e2ec32d";
 
 let dateTimeElement = document.querySelector("#date-time");
@@ -175,6 +196,8 @@ let windElement = document.querySelector("#wind");
 
 let tempUnit = document.querySelector("#temp-unit");
 
+let forecastElement = document.querySelector("#forecast");
+
 let fahrenheitButton = document.querySelector("#fahrenheit-button");
 fahrenheitButton.addEventListener("click", tempToFahrenheit);
 
@@ -184,3 +207,4 @@ celciusButton.addEventListener("click", tempToCelcius);
 let style = document.querySelector("#style");
 
 navigator.geolocation.getCurrentPosition(currentCity);
+displayForecast();
