@@ -21,12 +21,20 @@ function formatDate(timestamp) {
   return `Last updated ${day} ${hours}:${minutes}`;
 }
 
+function getForecast(position) {
+  let lat = position.lat;
+  let lon = position.lon;
+  apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function currentCity(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric`;
   axios.get(`${apiUrl}&appid=${apiKey}`).then(currentCityWeather);
 }
+
 function currentCityWeather(response) {
   let currentCity = response.data.name;
   city.innerHTML = `${currentCity}`;
@@ -61,6 +69,7 @@ function currentCityWeather(response) {
   } else {
     style.setAttribute("href", "src/style.css");
   }
+  getForecast(response.data.coord);
 }
 
 function locateCity(event) {
@@ -146,7 +155,8 @@ function tempToCelcius() {
   }
 }
 
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecastHTML = `<div class="row">`;
   let days = [
     "Sunday",
@@ -207,4 +217,3 @@ celciusButton.addEventListener("click", tempToCelcius);
 let style = document.querySelector("#style");
 
 navigator.geolocation.getCurrentPosition(currentCity);
-displayForecast();
