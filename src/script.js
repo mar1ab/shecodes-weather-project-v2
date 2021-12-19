@@ -21,13 +21,6 @@ function formatDate(timestamp) {
   return `Last updated ${day} ${hours}:${minutes}`;
 }
 
-function getForecast(position) {
-  let lat = position.lat;
-  let lon = position.lon;
-  apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayForecast);
-}
-
 function currentCity(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
@@ -155,25 +148,41 @@ function tempToCelcius() {
   }
 }
 
+function getForecast(position) {
+  let lat = position.lat;
+  let lon = position.lon;
+  apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
+function formatForecastDate(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
+
 function displayForecast(response) {
-  console.log(response.data.daily);
+  let forecast = response.data.daily;
   let forecastHTML = `<div class="row">`;
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `
         <div class="col">
-          <strong class="forecast-day">${day}</strong><br /><span class="forecast-temp-high">15</span>º | <span class="forecast-temp-low">7</span>º <br /><i class="fas fa-cloud"></i>
+          <strong class="forecast-day">${formatForecastDate(
+            forecastDay.dt
+          )}</strong><br /><span class="forecast-temp-high">${Math.round(
+          forecastDay.temp.max
+        )}</span>º | <span class="forecast-temp-low">${Math.round(
+          forecastDay.temp.min
+        )}</span>º <br /><img src="http://openweathermap.org/img/wn/${
+          forecastDay.weather[0].icon
+        }@2x.png">
         </div>`;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
