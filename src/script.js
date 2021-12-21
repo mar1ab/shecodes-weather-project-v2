@@ -29,6 +29,7 @@ function currentCity(position) {
 }
 
 function currentCityWeather(response) {
+  console.log(response);
   let currentCity = response.data.name;
   city.innerHTML = `${currentCity}`;
   let condition = response.data.weather[0].main;
@@ -56,11 +57,12 @@ function currentCityWeather(response) {
   );
   if (response.data.dt < response.data.sys.sunrise) {
     style.setAttribute("href", "src/darkstyle.css");
-  }
-  if (response.data.dt > response.data.sys.sunset) {
-    style.setAttribute("href", "src/darkstyle.css");
   } else {
-    style.setAttribute("href", "src/style.css");
+    if (response.data.dt > response.data.sys.sunset) {
+      style.setAttribute("href", "src/darkstyle.css");
+    } else {
+      style.setAttribute("href", "src/style.css");
+    }
   }
   getForecast(response.data.coord);
 }
@@ -83,6 +85,7 @@ function inputCity(event) {
 }
 
 function inputCityWeather(response) {
+  console.log(response);
   let condition = response.data.weather[0].main;
   let temp = Math.round(response.data.main.temp);
   let highTemp = Math.round(response.data.main.temp_max);
@@ -110,11 +113,12 @@ function inputCityWeather(response) {
   iconElement.setAttribute("alt", `${condition}`);
   if (response.data.dt < response.data.sys.sunrise) {
     style.setAttribute("href", "src/darkstyle.css");
-  }
-  if (response.data.dt > response.data.sys.sunset) {
-    style.setAttribute("href", "src/darkstyle.css");
   } else {
-    style.setAttribute("href", "src/style.css");
+    if (response.data.dt > response.data.sys.sunset) {
+      style.setAttribute("href", "src/darkstyle.css");
+    } else {
+      style.setAttribute("href", "src/style.css");
+    }
   }
   getForecast(response.data.coord);
 }
