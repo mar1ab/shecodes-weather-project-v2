@@ -116,6 +116,7 @@ function inputCityWeather(response) {
   } else {
     style.setAttribute("href", "src/style.css");
   }
+  getForecast(response.data.coord);
 }
 
 function tempToFahrenheit() {
