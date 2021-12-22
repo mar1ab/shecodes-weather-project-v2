@@ -91,8 +91,11 @@ function inputCityWeather(response) {
   let humidity = Math.round(response.data.main.humidity);
   let wind = Math.round(response.data.wind.speed);
   let icon = response.data.weather[0].icon;
+  let cityCorrected =
+    searchCityInput.value.charAt(0).toUpperCase() +
+    searchCityInput.value.slice(1);
   tempUnit.innerHTML = "ºC";
-  city.innerHTML = `${searchCityInput.value}`;
+  city.innerHTML = `${cityCorrected}`;
   coditionElement.innerHTML = `${condition}`;
   currentTempElement.innerHTML = `${temp}`;
   highTempIndicator.innerHTML = "H ";
